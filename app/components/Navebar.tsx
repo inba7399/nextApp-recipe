@@ -7,13 +7,12 @@ import {auth ,signOut,signIn } from '@/auth'
 const Navebar = async () => {
     const session = await auth()
   return (
-    <header className='px-5 py-3 bg-white shadow-sm font-work-sans'>
+    <header className='  bg-white shadow-sm font-work-sans'>
         <nav className='flex justify-between items-center'>
           <Link href={"/"}>
-           <Image src="" alt='logo' width={144} height={30}  />
+           <Image src="/logo.png" alt='logo' width={130} height={30}  />
           </Link>
-        </nav>
-        <div className='flex items-center gap-5 text-black'>
+          <div className='flex me-5 items-center gap-5 text-black'>
           {session && session?.user?(
             <>
              <Link href={'/recipes/create'}>
@@ -21,7 +20,7 @@ const Navebar = async () => {
              </Link>
              <form action={ async()=>{
                   'use server'
-                  await signOut()
+                  await signOut({redirectTo:"/"})
              } }>
                 <button type='submit'>
                    Logout
@@ -42,6 +41,8 @@ const Navebar = async () => {
             </form>
           )}
         </div>
+        </nav>
+      
     </header>
   )
 }
