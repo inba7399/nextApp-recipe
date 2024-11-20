@@ -10,7 +10,9 @@ const Navebar = async () => {
     <header className='  bg-white shadow-sm font-work-sans'>
         <nav className='flex justify-between items-center'>
           <Link href={"/"}>
-           <Image src="/logo.png" alt='logo' width={130} height={30}  />
+          <div className='ms-5'>
+          <Image src="/logo.png" alt='logo' width={130} height={30}  />
+          </div>
           </Link>
           <div className='flex me-5 items-center gap-5 text-black'>
           {session && session?.user?(
