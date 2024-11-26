@@ -1,16 +1,17 @@
-import RecipeCardType from "@/components/RecipeCardType";
+import RecipeCard, { RecipeCardType } from "@/components/RecipeCardType";
 import  SearchForm  from "../../components/SearchForm";
+import { RECIPE_QUERY } from "@/sanity/lib/queries";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 
 export default async function Home({searchParams}:{searchParams:Promise<{query?: string}>}) {
   
   const query = (await searchParams).query;
-  
-  const posts = [{_createdAt:new Date(),views:33,author:{_id:1,name:"inba"},_id:1,description:"hellow how are you my boi" ,
-    img:"https://yummyindiankitchen.com/wp-content/uploads/2020/06/chicken-gravy-recipe-indian-style.jpg",
-    category:"indian" ,title:"chiken gravy" }]
-  
 
+  const {data:posts} = await sanityFetch({query:RECIPE_QUERY})
+    
+  
+  
   return (
     
    <>
@@ -28,11 +29,12 @@ export default async function Home({searchParams}:{searchParams:Promise<{query?:
       <ul className="mt-7 card_grid">
         {posts?.length > 0 ?(
           posts.map((post:RecipeCardType , index:number)=>(
-            <RecipeCardType key={post?._id} post={post}/>
+            <RecipeCard key={post?._id} post={post}/>
           ))
         ):(<p className="no-results">No recipe found</p>)}
       </ul>
     </section>
+    <SanityLive/>
    </>
   );
 }

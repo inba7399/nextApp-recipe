@@ -41,8 +41,12 @@ export const recipe = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "YoutubeVideo",
+      type: "url",
+    }),
+    defineField({
       name: "pitch",
-      type: "text",
+      type: "markdown",
     }),
   ],
 });

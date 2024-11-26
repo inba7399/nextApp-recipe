@@ -4,10 +4,13 @@ import React from 'react'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button";
 import Image from 'next/image'
+import { Author, Recipe } from '@/sanity/types';
+
+export type RecipeCardType = Omit <Recipe , 'author'> & {author?:Author}
 
 const RecipeCardType = ({post}:{post:RecipeCardType}) => {
     
-  const {_createdAt,views,author:{_id:authorId ,name},title,category,_id,img,description } = post
+  const {_createdAt,views,author,title,category,_id,image,description } = post
 
   return (
     <li className='recipe-card group'>
@@ -22,14 +25,14 @@ const RecipeCardType = ({post}:{post:RecipeCardType}) => {
         </div>
         <div className='flex-between mt-5 gap-5'>
           <div className='felx-1'>
-            <Link href={`/user/${authorId}`}>
-             <p className='text-16-medium line-clamp-1'>{name}</p>
+            <Link href={`/user/${author?._id}`}>
+             <p className='text-16-medium line-clamp-1'>{author?.name}</p>
             </Link>
             <Link href={`/recipe/${_id}`}>
              <h3 className='text-26-semibold line-clamp-1'>{title}</h3>
             </Link>
           </div>
-          <Link  href={`/user/${authorId}`}>
+          <Link  href={`/user/${author?._id}`}>
             <Image src='https://placehold.co/48x48' alt='pl' width={48} height={48} className='rounded-full' />
           </Link>
         </div>
@@ -37,10 +40,10 @@ const RecipeCardType = ({post}:{post:RecipeCardType}) => {
           <p className='recipe-card_desc'>
              {description}
           </p>
-          <img src={img} alt="pl" className='recipe-card_img' />
+          <img src={image} alt="pl" className='recipe-card_img' />
         </Link>
         <div className='flex-between gap-3 mt-5'> 
-          <Link href={`/?quary=${category.toLowerCase()}`}>
+          <Link href={`/?quary=${category?.toLowerCase()}`}>
            <p className='text-16-medium'>{category}</p>
           </Link>
           <Button className='recipe-card_btn' asChild>
