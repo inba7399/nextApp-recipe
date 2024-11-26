@@ -777,7 +777,7 @@
         },
         "optional": true
       },
-      "pitch": {
+      "fullRecipe": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

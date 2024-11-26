@@ -43,7 +43,7 @@ const RecipeCardType = ({post}:{post:RecipeCardType}) => {
           <img src={image} alt="pl" className='recipe-card_img' />
         </Link>
         <div className='flex-between gap-3 mt-5'> 
-          <Link href={`/?quary=${category?.toLowerCase()}`}>
+          <Link href={`/?query=${category?.toLowerCase()}`}>
            <p className='text-16-medium'>{category}</p>
           </Link>
           <Button className='recipe-card_btn' asChild>
