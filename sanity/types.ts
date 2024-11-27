@@ -144,7 +144,7 @@ export type Recipe = {
   category?: string;
   image?: string;
   YoutubeVideo?: string;
-  fullRecipe?: string;
+  pitch?: string;
 };
 
 export type Slug = {

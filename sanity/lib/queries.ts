@@ -31,3 +31,9 @@ export const RECIPE_BY_ID_QUERY =
   pitch,
   YoutubeVideo
 }`);
+
+export const RECIPE_VIEWS_QUERY = defineQuery(`
+  *[_type == "recipe" && _id == $id][0]{
+      _id, views
+  }
+`);
